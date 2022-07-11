@@ -1,12 +1,12 @@
 <section class="blog">
     <div class="form">
-        <h2>Crear una nueva noticia</h2>
+        <h2>Publicar una nueva noticia</h2>
         <div class="form-data">
             <label for="titulo">Título de la noticia</label>
             <input type="text" id="titulo" [(ngModel)]="titulo">
         </div>
         <div class="form-data">
-            <label for="imagen">Imagen de la noticia (url)</label>
+            <label for="imagen">Imagen de la noticia (URL)</label>
             <input type="text" id="imagen" [(ngModel)]="imagen">
         </div>
         <div class="form-data">
@@ -15,7 +15,7 @@
         </div>
         <div class="form-data">
             <label for="fecha">Fecha de publicación</label>
-            <input type="text" id="fecha" [(ngModel)]="fecha">
+            <input type="text" class="input-fecha" id="fecha" [(ngModel)]="fecha" placeholder="dd/mm/aaaa">
         </div>
         <div>
             <span class="w-btn">
@@ -26,7 +26,6 @@
             </span> 
         </div>   
     </div>
-    <hr>
     <div class="listado">
         <h2>Lista de noticias</h2>
         <ul [innerHTML]="listado" class="lista-noticias">

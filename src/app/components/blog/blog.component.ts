@@ -19,16 +19,16 @@ export class BlogComponent implements OnInit {
   	constructor() {
 		this.arrNoticias = [
 			{
-				titulo: 'Título 1',
+				titulo: 'LOTRem Ipsum',
 				imagen: 'https://via.placeholder.com/300',
-				texto: 'Blimey unfold Woodland whether precedes goodwill defending belonged now bark innocent? Limited gonna gallop Oakenshield ever-watchful way allegiance few boiling mouth? Job Wood-elves warn riddles. Anchored Barahir slaughtered trouble-making unrest crowned fun fat. And what about very old friends? Gimli left believe boots. Dwarf meat\'s search. Remade thee position looks hoot Dimrill petty! Thunder leaves sauteed solid painted Adamant hunting elected but wolves! Angmar base anyway cries dangers dignity kitchen laid search crop twittering homage.',
-				fecha: 'fecha de la noticia 1'
+				texto: '10000 Earendil warned. Underhill consequence funeral tricksed ruling getting. Out-of-pocket Legolas descend. Pledge Captain conjured vast. Travel dung we\'d utterly rally undimmed robber Sigrid crowns. Nobody tosses a Dwarf. Boromir sleeping hard-won vine son comfort. Extra pages upon fitted climbing weep Ori winter-thickets.',
+				fecha: new Date().toLocaleDateString() // Asigna la fecha en la que carga el componente
 			},
 			{
-				titulo: 'Título 2',
+				titulo: 'One text to rule them all',
 				imagen: 'https://via.placeholder.com/300',
-				texto: 'Gone handful Fangorn blessing speaking admire. Dim Silvan tombs proud relations. Stair tidings bond Uruk-hai poison\'s. Hobbiton smelling they\'ve miss withhold level walked drawn. Canniest Elfs arrived ready guide tries. Fallen character Bombur\'s starving malt. And what about very old friends? Ending Adamant remade. Please plan river-folk Fundin won\'t unto although.',
-				fecha: 'fecha de la noticia 2'
+				texto: 'One Ring to rule them all. Head-on cruel sent Grubbs skinned gut being! Rode standing friends distance strengths Lasgalen carries elevenses beneath. Sawed Arwen Evenstar powerless race perhaps? Restless skinned force sakes Merry haven\'t sniveling bidden barrel. Galadriel unleash sire sharp matters oppose. Vale throws dragon rot Galadhrim there\'s least whispers waters? Window prosaic Mungo\'s helpful asking cream pack place sir dreams lights. Agents Elessar bore.',
+				fecha: new Date().toLocaleDateString() // Asigna la fecha en la que carga el componente
 			}
 		];
 	}	
@@ -39,22 +39,26 @@ export class BlogComponent implements OnInit {
 
     cargarNoticias(): void {
         this.listado = '';
-        //this.arrNoticias.forEach(noticia => this.listado += `<li>${noticia.titulo} // ${noticia.imagen} // ${noticia.texto} // ${noticia.fecha}</li>`);
         this.arrNoticias.forEach(noticia => this.listado += this.mostrarNoticia(noticia.titulo, noticia.imagen, noticia.texto, noticia.fecha));
     }
 
     guardarNoticia(): void {
-        // TODO: comprobar noticias duplicadas
         if (this.titulo !== '' && this.imagen !== '' && this.texto !== '' && this.fecha !== '') {
-            let nuevaNoticia: Noticia = {
-                titulo: this.titulo,
-				imagen: this.imagen,
-				texto: this.texto,
-				fecha: this.fecha
+            let pos = this.arrNoticias.findIndex(noticia => noticia.titulo === this.titulo);
+            
+            if (pos === -1) {
+                let nuevaNoticia: Noticia = {
+                    titulo: this.titulo,
+                    imagen: this.imagen,
+                    texto: this.texto,
+                    fecha: this.fecha
+                }
+                this.arrNoticias.push(nuevaNoticia);
+                this.cargarNoticias();
+                this.borrarCampos();
+            } else {
+                alert('Ya existe una noticia con ese mismo título, prueba con otro distinto');
             }
-            this.arrNoticias.push(nuevaNoticia);
-            this.cargarNoticias();
-            this.borrarCampos();
         } else {
             alert('¡Los campos no pueden estar vacíos!');
         }
@@ -70,10 +74,10 @@ export class BlogComponent implements OnInit {
     mostrarNoticia(pTitulo: string, pImagen: string, pTexto: string, pFecha: string): string {
         return `
         <li class="lista-item">
-            <h3>${pTitulo}</h3>
+            <h3 class="titulo-noticia">${pTitulo}</h3>
             <img src='${pImagen}' alt='${pTitulo}' class="imagen-noticia">
-            <p>${pTexto}</p>
-            <p>${pFecha}</p>
+            <p class="texto-noticia">${pTexto}</p>
+            <p class="fecha-noticia">${pFecha}</p>
         </li>
         `;
     }

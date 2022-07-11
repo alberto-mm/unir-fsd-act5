@@ -1,5 +1,17 @@
-.cabecera {
+.header {    
+    padding: 12px 0;
+    border-bottom: 2px solid #CECECE;
+}
+
+.w-header {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 8px 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.footer {
+    padding: 12px 0;
+    border-top: 2px solid #CECECE;
+    text-align: center;
 }
